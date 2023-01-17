@@ -1,0 +1,45 @@
+$header-height: 10vh;
+$font-size: clamp(0.9rem, 2.5rem, calc(#{$header-height} * 0.16));
+
+/* Color Pallet */
+$blue-light: rgb(18, 103, 130);
+$blue-dark: rgb(2, 48, 71);
+$bk-blue: rgb(142, 202, 230);
+$orange-dark: rgb(255, 183, 3);
+
+.App-header {
+    background-color: $blue-dark;
+    min-height: $header-height;
+    display: flex;
+    align-items: center;
+    color: $orange-dark;
+  
+    .headerContainer {
+      margin: 0 auto;
+      display: flex;
+      align-items: baseline;
+      width: 80vw;
+    }
+  
+    .brand {
+      font-size: calc(#{$header-height} * 0.4);
+      a {
+        color: $orange-dark;
+        text-decoration: none;
+      }
+    }
+  
+    .menu {
+      .items {
+        display: flex;
+        list-style: none;
+        a {
+          text-decoration: none;
+          color: $orange-dark;
+        }
+        .item {
+          padding: 0 1rem;
+        }
+      }
+    }
+  }
