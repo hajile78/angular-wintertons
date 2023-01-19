@@ -6,3 +6,14 @@
     margin-bottom: 1rem;
     min-height: 1rem;
 }
+blockquote {
+    border-left: 5px solid rgba(68,66,160,.6);
+    display: block;
+    font-size: 1rem;
+    margin-block-end: 1em;
+    margin-block-start: 1em;
+    margin-inline-end: 2rem;
+    margin-inline-start: 2rem;
+    padding: 0.5rem 1rem;
+    text-align: left;
+}

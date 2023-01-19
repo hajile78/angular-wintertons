@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppContentComponent } from './app-content.component';
+import { AppContentComponent } from './content.component';
 
 describe('AppContentComponent', () => {
   let component: AppContentComponent;

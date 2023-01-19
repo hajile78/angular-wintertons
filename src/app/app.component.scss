@@ -1,9 +1,10 @@
+* {
+    text-align: center;
+}
 .container {
     margin: 0 auto;
     height: 100%;
     // background-color: aliceblue;
     display: grid;
     grid-template-columns: 0.5fr 3fr 0.125fr 1fr 0.5fr;
-  }
-
-  
+}
