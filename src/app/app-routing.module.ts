@@ -4,8 +4,8 @@ import { PageComponent } from './partial/page/page.component';
 import { PostComponent } from './partial/post/post.component';
 
 const routes: Routes = [
-  { path: 'nav/:page', component: PageComponent},
-  { path: 'post/:id', component: PostComponent},
+  { path: ':page', component: PageComponent},
+  { path: ':page/post/:id', component: PostComponent},
   { path: '**', redirectTo: 'nav/Main'}
 ];
 
