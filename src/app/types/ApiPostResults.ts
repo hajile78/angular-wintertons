@@ -1,9 +1,9 @@
 import {Post} from './Post'
 
-type ApiResults = {
-  posts: Post[]
+type ApiPostResults = {
+  post: Post[]
   moreResults: string
   endCursor: string
 }
 
-export {ApiResults}
+export {ApiPostResults}

@@ -1,32 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { PostsService } from 'src/app/posts.service';
-import { ApiPageResults } from 'src/app/types/ApiPageResults';
+import { ApiPostResults } from 'src/app/types/ApiPostResults';
 import { Post } from 'src/app/types/Post';
 
 @Component({
-  selector: 'app-page',
-  templateUrl: './page.component.html',
-  styleUrls: ['./page.component.scss']
+  selector: 'app-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss']
 })
-export class PageComponent implements OnInit {
-  posts: Post[] = [];
-  postId: any;
+export class PostComponent implements OnInit {
   loading: boolean = true;
+  postId: any;
+  post!: Post;
+
   constructor(
     private route: ActivatedRoute,
     private service: PostsService
   ) {}
-  
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((param) => {
-        this.postId = param.get('page')
-        this.service.getPosts(this.postId).subscribe((res: ApiPageResults) => {
-          this.posts = res.posts
+        this.postId = param.get('id')
+        this.service.getPost(this.postId).subscribe((res: ApiPostResults) => {
+          this.post = res.post[0]
           this.loading = false
         })
     })
   }
-
-
 }

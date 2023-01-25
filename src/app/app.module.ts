@@ -8,6 +8,7 @@ import { HeaderComponent } from './partial/header/header.component';
 import { ContentComponent } from './partial/content/content.component';
 import { QuotesComponent } from './partial/quotes/quotes.component';
 import { PageComponent } from './partial/page/page.component';
+import { PostComponent } from './partial/post/post.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PageComponent } from './partial/page/page.component';
     HeaderComponent,
     ContentComponent,
     QuotesComponent,
-    PageComponent
+    PageComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

@@ -7,8 +7,8 @@
   <ng-template #elseBlock>
     <div class="postData" [ngClass]="{'loader': loading}" *ngFor="let post of posts">
       <article class="postArticle">
-        <div id="5634161670881280">
-          <h2><a href="/post/5634161670881280">{{post.title}}</a></h2>
+        <div id="{{post.id}}">
+          <h2><a href="{{'/post/'+post.id}}">{{post.title}}</a></h2>
           <p class="lead">by {{post.user}}</p>
           <p>
             <span class="glyphicon glyphicon-time"></span>{{post.created}}</p>
