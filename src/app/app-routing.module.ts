@@ -4,7 +4,7 @@ import { PageComponent } from './partial/page/page.component';
 
 const routes: Routes = [
   { path: 'nav/:page', component: PageComponent},
-  { path: '**', redirectTo: 'nav/main'}
+  { path: '**', redirectTo: 'nav/Main'}
 ];
 
 @NgModule({

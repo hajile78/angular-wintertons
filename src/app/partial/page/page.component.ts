@@ -13,6 +13,7 @@ import { Post } from 'src/app/types/Post';
 export class PageComponent implements OnInit {
   posts: Post[] = [];
   postId: any;
+  loading: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private service: PostsService
@@ -21,7 +22,10 @@ export class PageComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((param) => {
         this.postId = param.get('page')
-        this.service.getPosts(this.postId).subscribe((res: ApiResults) => this.posts = res.posts)
+        this.service.getPosts(this.postId).subscribe((res: ApiResults) => {
+          this.posts = res.posts
+          this.loading = false
+        })
     })
   }
 
