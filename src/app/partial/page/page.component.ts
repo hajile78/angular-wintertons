@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { PostsService } from 'src/app/posts.service';
+import { PostsService } from 'src/app/services/posts/posts.service';
 import { ApiPageResults } from 'src/app/types/ApiPageResults';
 import { Post } from 'src/app/types/Post';
 
@@ -17,7 +17,7 @@ export class PageComponent implements OnInit {
     private route: ActivatedRoute,
     private service: PostsService
   ) {}
-  
+
   ngOnInit(): void {
     this.route.paramMap.subscribe((param) => {
         this.postId = param.get('page')

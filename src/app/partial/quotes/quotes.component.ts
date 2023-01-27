@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-quotes',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./quotes.component.scss']
 })
 export class QuotesComponent {
+  @Input() quotes: any
+
 
 }
