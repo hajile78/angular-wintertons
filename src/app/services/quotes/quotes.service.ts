@@ -12,6 +12,6 @@ export class QuotesService {
 
   getQuotes() {
     const endpoint: string = 'quotes/'
-    return this.http.get<ApiQuoteResults>(`${this.server}${endpoint}`).pipe(map(result => result.quotes))
+    return this.http.get<ApiQuoteResults>(`${this.server}${endpoint}`)
   }
 }
