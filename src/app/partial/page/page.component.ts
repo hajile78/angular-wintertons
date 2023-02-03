@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { ApiPageResults } from 'src/app/types/ApiPageResults';
@@ -10,6 +10,7 @@ import { Post } from 'src/app/types/Post';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit {
+  @Output() setRandom = new EventEmitter<number>()
   posts: Post[] = [];
   postId: any;
   loading: boolean = true;
@@ -19,6 +20,7 @@ export class PageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log('Page component called')
     this.route.paramMap.subscribe((param) => {
         this.postId = param.get('page')
         this.service.getPosts(this.postId).subscribe((res: ApiPageResults) => {
@@ -27,6 +29,8 @@ export class PageComponent implements OnInit {
         })
     })
   }
+  
+
 
 
 }

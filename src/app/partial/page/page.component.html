@@ -2,7 +2,7 @@
   <h1 class="blog-header">
     Wintertons.us <small>The Whole Famn Damily</small>
   </h1>
-  <div *ngIf="posts.length === 0; then thenBlock else elseBlock"></div>
+  <div *ngIf="posts.length === 0 && !loading; then thenBlock else elseBlock"></div>
   <ng-template #thenBlock><h3>No Content Here ☹️</h3></ng-template>
   <ng-template #elseBlock>
     <div class="postData" [ngClass]="{'loader': loading}" *ngFor="let post of posts">

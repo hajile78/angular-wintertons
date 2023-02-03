@@ -7,13 +7,20 @@ import { Quote } from 'src/app/types/ApiQuoteReults';
   styleUrls: ['./quotes.component.scss']
 })
 export class QuotesComponent implements OnInit {
-  @Input() quote!: Quote;
+  @Input() quotes$!: Quote[];
+  @Input() random!: number
+  quote!: Quote;
 
-  constructor() {}
+  constructor() {
+    console.log('constructor' + this.quotes$)
+  }
+
   ngOnInit(): void {
 
   }
 
-
+  ngOnChanges(): void {
+    this.quote = this.quotes$[this.random]
+  }
 
 }
