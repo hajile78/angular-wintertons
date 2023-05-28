@@ -1,41 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalService } from 'src/app/services/local/local.service';
+import { NavigationStart, Router } from '@angular/router';
+import { Observable, takeWhile } from 'rxjs';
 import { QuotesService } from 'src/app/services/quotes/quotes.service';
-import { ApiQuoteResults, Quote } from 'src/app/types/ApiQuoteReults';
+import { Quote } from 'src/app/types/ApiQuoteReults';
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.scss']
+  styleUrls: ['./content.component.scss'],
 })
 export class ContentComponent implements OnInit {
-  quotes!: Quote[]
+  alive:boolean = true;
   random: number = 0;
-  // quote!: Quote
+  quotes$: Observable<Quote[]>;
 
-  constructor(
-    private service: QuotesService,
-    localStorage: LocalService
-  ) {}
 
-  getRandom(length: number) {
-    return Math.floor(Math.random() * length)
+  constructor(private service: QuotesService, private router: Router) {
+    this.quotes$ = this.service.quotes$;
   }
 
   ngOnInit(): void {
-    console.log("content class called")
-    if(this.quotes === undefined || this.quotes.length <= 0) {
-      this.service.getQuotes().subscribe((res: ApiQuoteResults) => {
-        console.log('response:' + JSON.stringify(res))
-        this.quotes = res.quotes
-        // this.quote = this.quotes[this.getRandom(res.quotes.length)]
-      })
-    } else {
-      // this.quote = this.quotes[this.getRandom(this.quotes.length)]
-    }
+    console.log('content class called');
+    this.router.events
+    .pipe(takeWhile(() => this.alive))
+    .subscribe((event) => {
+      if(event instanceof NavigationStart) {
+        this.random = this.service.getRandom()
+      }
+    })
   }
 
-  ngOnChanges(): void {
-    this.random = this.getRandom(this.quotes.length)
-  }
 }

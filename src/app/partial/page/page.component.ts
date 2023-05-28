@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
+import { takeWhile } from 'rxjs';
 import { PostsService } from 'src/app/services/posts/posts.service';
 import { ApiPageResults } from 'src/app/types/ApiPageResults';
 import { Post } from 'src/app/types/Post';
@@ -14,23 +15,23 @@ export class PageComponent implements OnInit {
   posts: Post[] = [];
   postId: any;
   loading: boolean = true;
+  alive: boolean = true;
   constructor(
     private route: ActivatedRoute,
-    private service: PostsService
+    private postService: PostsService
   ) {}
 
   ngOnInit(): void {
     console.log('Page component called')
     this.route.paramMap.subscribe((param) => {
         this.postId = param.get('page')
-        this.service.getPosts(this.postId).subscribe((res: ApiPageResults) => {
+        this.postService.getPosts(this.postId)
+        .pipe(takeWhile(() => this.alive))
+        .subscribe((res: ApiPageResults) => {
           this.posts = res.posts
           this.loading = false
         })
     })
   }
-  
-
-
 
 }
