@@ -6,7 +6,7 @@ import { PostComponent } from './partial/post/post.component';
 const routes: Routes = [
   { path: ':page', component: PageComponent},
   { path: ':page/post/:id', component: PostComponent},
-  { path: '**', redirectTo: 'nav/Main'}
+  { path: '**', redirectTo: 'Main'}
 ];
 
 @NgModule({

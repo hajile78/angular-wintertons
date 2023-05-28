@@ -1,6 +1,16 @@
-<div class="quote">
+<div class="quote" *ngIf="quote; else loadingBlock">
     <h3>Random Quotes</h3>
-    <blockquote>Never judge someone by the opinion of others.
-        <footer>Unknown</footer>
+    <blockquote >{{quote.quote}}
+        <footer>{{quote.author}}</footer>
     </blockquote>
 </div>
+
+<ng-template #loadingBlock>
+  <div class="quote">
+    <h3>loading...</h3>
+    <blockquote>
+      <footer>Wait for it....</footer>
+    </blockquote>
+  </div>
+  
+</ng-template>
