@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Observable, Subscription, switchMap } from 'rxjs';
-import { PostsService } from 'src/app/posts.service';
-import { ApiResults } from 'src/app/types/ApiResults';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
+import { takeWhile } from 'rxjs';
+import { PostsService } from 'src/app/services/posts/posts.service';
+import { ApiPageResults } from 'src/app/types/ApiPageResults';
 import { Post } from 'src/app/types/Post';
 
 @Component({
@@ -11,19 +11,27 @@ import { Post } from 'src/app/types/Post';
   styleUrls: ['./page.component.scss']
 })
 export class PageComponent implements OnInit {
+  @Output() setRandom = new EventEmitter<number>()
   posts: Post[] = [];
   postId: any;
+  loading: boolean = true;
+  alive: boolean = true;
   constructor(
     private route: ActivatedRoute,
-    private service: PostsService
+    private postService: PostsService
   ) {}
-  
+
   ngOnInit(): void {
+    console.log('Page component called')
     this.route.paramMap.subscribe((param) => {
         this.postId = param.get('page')
-        this.service.getPosts(this.postId).subscribe((res: ApiResults) => this.posts = res.posts)
+        this.postService.getPosts(this.postId)
+        .pipe(takeWhile(() => this.alive))
+        .subscribe((res: ApiPageResults) => {
+          this.posts = res.posts
+          this.loading = false
+        })
     })
   }
-
 
 }
