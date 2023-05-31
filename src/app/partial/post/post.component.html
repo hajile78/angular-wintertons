@@ -1,8 +1,4 @@
 <div class="main">
-  <h1 class="blog-header">
-    Wintertons.us <small>The Whole Famn Damily</small>
-  </h1>
-
   <div class="postData" [ngClass]="{ loader: loading }">
     <article class="postArticle">
       <div id="{{post.id}}">
@@ -10,7 +6,7 @@
           <a href="{{'/post/'+post.id}}">{{ post.title }}</a>
         </h2>
         <p class="lead">by {{ post.user }}</p>
-        <p><span class="glyphicon glyphicon-time"></span>{{ post.created }}</p>
+        <p><span class="glyphicon glyphicon-time"></span>{{post.created | date: 'short'}}</p>
         <div classnname="postBody" [innerHTML]="post.body"></div>
       </div>
     </article>
