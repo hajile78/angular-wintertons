@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PostsService } from 'src/app/services/posts/posts.service';
-import { ApiPostResults } from 'src/app/types/ApiPostResults';
 import { Post } from 'src/app/types/Post';
 
 @Component({
@@ -14,9 +12,7 @@ export class PostComponent implements OnInit {
   @Input() post!: Post;
 
 
-  constructor(
-    private service: PostsService
-  ) {}
+
 
   ngOnInit(): void {
     if (this.post.id) {
