@@ -2,13 +2,20 @@
   <h1 class="blog-header">
     Wintertons.us <small>The Whole Famn Damily</small>
   </h1>
-  <div style="position: absolute;" [ngClass]="{loader: posts.length !== 0}"
-    *ngIf="posts && posts.length === 0; then noPostsBlock; else postTemplateBlock"
-  ></div>
-  <ng-template #noPostsBlock><h3>No posts ☹️</h3></ng-template>
-  <ng-template #postTemplateBlock>
+  <div  *ngIf="!postsEmpty" [ngClass]="{ loader: loading }">
     <div *ngFor="let post of posts">
       <app-post [post]="post" [loading]="loading"></app-post>
     </div>
-  </ng-template>
+  </div>
+  <div *ngIf="postsEmpty">
+    <div class="main">
+      <div class="postData">
+        <article class="postArticle">
+          <h3>No posts found</h3>
+        </article>
+      </div>
+    </div>
+  </div>
+
+
 </div>
