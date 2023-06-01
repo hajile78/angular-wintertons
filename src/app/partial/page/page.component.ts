@@ -14,6 +14,7 @@ import { Post } from 'src/app/types/Post';
 export class PageComponent implements OnInit {
   @Output() setRandom = new EventEmitter<number>()
   posts: Post[] = [];
+  postsEmpty: boolean = false
   postId: string | null = null;
   loading: boolean = true;
   alive: boolean = true;
@@ -33,23 +34,20 @@ export class PageComponent implements OnInit {
           this.postService.getPosts(this.postPage)
           .pipe(takeWhile(() => this.alive))
           .subscribe((res: ApiPageResults) => {
-            console.log(`Page posts called for ${this.postPage}`)
             this.posts = res.posts
+            this.postsEmpty = res.posts.length === 0
             this.loading = false
           })
         } else {
-          // if (this.postId !== null){
-            this.postService.getPost(this.postId || '0')
-            .pipe(takeWhile(() => this.alive))
-            .subscribe((res: ApiPostResults) => {
-              console.log(`Posts called for ${this.postId}`)
-              console.log(`Posts ${JSON.stringify(res.post)}`)
-              this.posts = res.post
-              this.loading = false
-            })
-          // }
+          this.postService.getPost(this.postId || '0')
+          .pipe(takeWhile(() => this.alive))
+          .subscribe((res: ApiPostResults) => {
+            res.post[0].id = this.postId ? this.postId : '0';
+            this.posts = res.post
+            this.postsEmpty = res.post.length === 0
+            this.loading = false
+          })
         }
-        this.loading = false
     })
   }
 
