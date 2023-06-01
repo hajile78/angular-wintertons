@@ -11,9 +11,6 @@ export class PostComponent implements OnInit {
   @Input() loading: boolean = true;
   @Input() post!: Post;
 
-
-
-
   ngOnInit(): void {
     if (this.post.id) {
       this.loading = false
@@ -22,8 +19,4 @@ export class PostComponent implements OnInit {
 
   }
 
-  ngOnDestroy(): void {
-    // console.log(JSON.stringify(this.post))
-    this.postId = null
-  }
 }
