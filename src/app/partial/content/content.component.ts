@@ -10,10 +10,9 @@ import { Quote } from 'src/app/types/ApiQuoteReults';
   styleUrls: ['./content.component.scss'],
 })
 export class ContentComponent implements OnInit {
-  alive:boolean = true;
-  random: number = 0;
+  alive: boolean = true;
+  random: Quote = {} as Quote;
   quotes$: Observable<Quote[]>;
-
 
   constructor(private service: QuotesService, private router: Router) {
     this.quotes$ = this.service.quotes$;
@@ -21,13 +20,10 @@ export class ContentComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('content class called');
-    this.router.events
-    .pipe(takeWhile(() => this.alive))
-    .subscribe((event) => {
-      if(event instanceof NavigationStart) {
-        this.random = this.service.getRandom()
+    this.router.events.pipe(takeWhile(() => this.alive)).subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.random = this.service.getRandom();
       }
-    })
+    });
   }
-
 }
