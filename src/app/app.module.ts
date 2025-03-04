@@ -9,6 +9,7 @@ import { ContentComponent } from './partial/content/content.component';
 import { QuotesComponent } from './partial/quotes/quotes.component';
 import { PageComponent } from './partial/page/page.component';
 import { PostComponent } from './partial/post/post.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PostComponent } from './partial/post/post.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DatePipe
   ],
   providers: [],
   bootstrap: [AppComponent]

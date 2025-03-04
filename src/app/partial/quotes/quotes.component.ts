@@ -7,7 +7,8 @@ import { Quote } from 'src/app/types/ApiQuoteReults';
 @Component({
   selector: 'app-quotes',
   templateUrl: './quotes.component.html',
-  styleUrls: ['./quotes.component.scss']
+  styleUrls: ['./quotes.component.scss'],
+  standalone: false
 })
 export class QuotesComponent implements OnInit {
   @Input() random: number | undefined
