@@ -22,6 +22,9 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
+  "overrides": {
+    "postcss": "^8.4.49"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.3.12",
     "@angular/cli": "~17.3.12",
