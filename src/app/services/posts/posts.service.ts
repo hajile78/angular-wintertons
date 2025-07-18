@@ -7,7 +7,7 @@ import { ApiPostResults } from '../../types/ApiPostResults'
   providedIn: 'root'
 })
 export class PostsService {
-  private server = 'https://apiwintertons.uc.r.appspot.com/'
+  private server = 'https://api.wintertons.us/'
   constructor(private http: HttpClient) { }
 
   getPosts(id: string) {
