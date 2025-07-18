@@ -7,7 +7,7 @@ import { map, shareReplay, takeWhile } from 'rxjs';
   providedIn: 'root',
 })
 export class QuotesService {
-  private server = 'https://apiwintertons.uc.r.appspot.com/';
+  private server = 'https://api.wintertons.us/'
   constructor(private http: HttpClient) {}
   alive: boolean = true;
   quotes$ = this.getQuotes();
