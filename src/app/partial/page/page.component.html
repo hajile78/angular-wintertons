@@ -2,18 +2,24 @@
   <h1 class="blog-header">
     Wintertons.us <small>The Whole Famn Damily</small>
   </h1>
-  <div  *ngIf="!postsEmpty" [ngClass]="{ loader: loading }">
-    <div *ngFor="let post of posts">
-      <app-post [post]="post" [loading]="loading"></app-post>
+  @if (!postsEmpty) {
+    <div  [ngClass]="{ loader: loading }">
+      @for (post of posts; track post) {
+        <div>
+          <app-post [post]="post" [loading]="loading"></app-post>
+        </div>
+      }
     </div>
-  </div>
-  <div *ngIf="postsEmpty">
-    <div class="main">
-      <div class="postData">
-        <article class="postArticle">
-          <h3>No posts found</h3>
-        </article>
+  }
+  @if (postsEmpty) {
+    <div>
+      <div class="main">
+        <div class="postData">
+          <article class="postArticle">
+            <h3>No posts found</h3>
+          </article>
+        </div>
       </div>
     </div>
-  </div>
+  }
 </div>
