@@ -30,8 +30,8 @@
     "tmp": "0.2.4"
   },
   "devDependencies": {
-    "@angular/build": "^21.1.2",
-    "@angular/cli": "~21.1.2",
+    "@angular/build": "^21.1.3",
+    "@angular/cli": "~21.1.3",
     "@angular/compiler-cli": "^21.1.3",
     "@netlify/angular-runtime": "^3.0.1",
     "@types/jasmine": "~6.0.0",
