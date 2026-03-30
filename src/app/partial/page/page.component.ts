@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { takeWhile } from 'rxjs';
-import { PostsService } from 'src/app/services/posts/posts.service';
-import { ApiPageResults } from 'src/app/types/ApiPageResults';
-import { ApiPostResults } from 'src/app/types/ApiPostResults';
-import { Post } from 'src/app/types/Post';
+import { PostsService } from '../../services/posts/posts.service';
+import { ApiPageResults } from '../../types/ApiPageResults';
+import { ApiPostResults } from '../../types/ApiPostResults';
+import { Post } from '../../types/Post';
 
 @Component({
   selector: 'app-page',

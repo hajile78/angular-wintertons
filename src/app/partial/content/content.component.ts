@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Observable, takeWhile } from 'rxjs';
-import { QuotesService } from 'src/app/services/quotes/quotes.service';
-import { Quote } from 'src/app/types/ApiQuoteReults';
+import { QuotesService } from '../../services/quotes/quotes.service';
+import { Quote } from '../../types/ApiQuoteReults';
 
 @Component({
   selector: 'app-content',
