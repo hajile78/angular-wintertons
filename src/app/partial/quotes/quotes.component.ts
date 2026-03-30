@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { takeWhile } from 'rxjs';
-import { QuotesService } from 'src/app/services/quotes/quotes.service';
-import { Quote } from 'src/app/types/ApiQuoteReults';
+import { QuotesService } from '../../services/quotes/quotes.service';
+import { Quote } from '../../types/ApiQuoteReults';
 
 @Component({
   selector: 'app-quotes',
@@ -29,7 +29,7 @@ export class QuotesComponent implements OnInit {
     console.log("onInit quote component")
     this.service.quotes$
     .pipe(takeWhile(() => this.alive))
-    .subscribe((qutoes) => {
+    .subscribe((qutoes: Quote[]) => {
       this.quotes = qutoes
       this.random = this.getRandom();
       this.quote = qutoes[this.random]

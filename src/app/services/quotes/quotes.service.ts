@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiQuoteResults, Quote } from 'src/app/types/ApiQuoteReults';
+import { ApiQuoteResults, Quote } from '../../types/ApiQuoteReults';
 import { map, shareReplay, takeWhile } from 'rxjs';
 
 @Injectable({
