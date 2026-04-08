@@ -27,7 +27,8 @@
   "overrides": {
     "postcss": "^8.4.49",
     "on-headers": "~1.1.0",
-    "tmp": "0.2.4"
+    "tmp": "0.2.4",
+    "vite": "8.0.7"
   },
   "devDependencies": {
     "@angular/build": "^21.2.6",
