@@ -1,11 +1,10 @@
 type Quote = {
-  author: string
-  quote: string
-  id: string
-}
+  author: string;
+  quote: string;
+  id: string;
+};
 type ApiQuoteResults = {
-  quotes: Quote[]
-}
+  quotes: Quote[];
+};
 
-export { Quote, ApiQuoteResults}
-
+export { Quote, ApiQuoteResults };

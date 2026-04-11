@@ -1,4 +1,4 @@
- import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 interface LocalData {
   expire: string;
@@ -6,24 +6,24 @@ interface LocalData {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class LocalService {
   constructor() {}
 
   private stringifiy(value: any) {
-    return JSON.stringify(value)
+    return JSON.stringify(value);
   }
 
   private parse(value: string | null) {
-    return value === null ? '' : JSON.parse(value)
+    return value === null ? "" : JSON.parse(value);
   }
 
   public saveData(key: string, value: string) {
     let obj: LocalData = {
       expire: new Date().getTime().toString(),
-      data: value
-    }
+      data: value,
+    };
     localStorage.setItem(key, this.stringifiy(obj));
   }
 
@@ -35,7 +35,7 @@ export class LocalService {
   }
 
   public keyExists(key: string): boolean {
-    return !(this.getData(key) === undefined)
+    return !(this.getData(key) === undefined);
   }
 
   public clearData() {
