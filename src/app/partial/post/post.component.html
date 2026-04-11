@@ -1,12 +1,12 @@
 <div class="main" [ngClass]="{ loader: loading }">
   <div class="postData">
     <article class="postArticle">
-      <div id="{{post.id}}">
+      <div id="{{ post.id }}">
         <h2>
-          <a href="{{'/post/'+post.id}}">{{ post.title }}</a>
+          <a href="{{ '/post/' + post.id }}">{{ post.title }}</a>
         </h2>
         <p class="lead">by {{ post.user }}</p>
-        <p><span class="glyphicon glyphicon-time"></span>{{post.created | date: 'short'}}</p>
+        <p><span class="glyphicon glyphicon-time"></span>{{ post.created | date: "short" }}</p>
         <div classnname="postBody" [innerHTML]="post.body"></div>
       </div>
     </article>

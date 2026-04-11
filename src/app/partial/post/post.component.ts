@@ -1,11 +1,11 @@
-import { Component, Input, OnInit} from '@angular/core';
-import { Post } from '../../types/Post';
+import { Component, Input, OnInit } from "@angular/core";
+import { Post } from "../../types/Post";
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss'],
-  standalone: false
+  selector: "app-post",
+  templateUrl: "./post.component.html",
+  styleUrls: ["./post.component.scss"],
+  standalone: false,
 })
 export class PostComponent implements OnInit {
   postId: any;
@@ -14,10 +14,8 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.post.id) {
-      this.loading = false
-      return
+      this.loading = false;
+      return;
     }
-
   }
-
 }

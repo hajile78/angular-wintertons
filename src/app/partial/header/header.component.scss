@@ -8,41 +8,41 @@ $bk-blue: rgb(142, 202, 230);
 $orange-dark: rgb(255, 183, 3);
 
 .App-header {
-    background-color: $blue-dark;
-    min-height: $header-height;
+  background-color: $blue-dark;
+  min-height: $header-height;
+  display: flex;
+  align-items: center;
+  color: $orange-dark;
+
+  .headerContainer {
+    margin: 0 auto;
     display: flex;
-    align-items: center;
-    color: $orange-dark;
-  
-    .headerContainer {
-      margin: 0 auto;
+    align-items: baseline;
+    width: 80vw;
+  }
+
+  .brand {
+    font-size: calc(#{$header-height} * 0.4);
+    a {
+      color: $orange-dark;
+      text-decoration: none;
+    }
+  }
+
+  .menu {
+    .items {
       display: flex;
-      align-items: baseline;
-      width: 80vw;
-    }
-  
-    .brand {
-      font-size: calc(#{$header-height} * 0.4);
+      list-style: none;
       a {
-        color: $orange-dark;
         text-decoration: none;
+        color: $orange-dark;
       }
-    }
-  
-    .menu {
-      .items {
-        display: flex;
-        list-style: none;
-        a {
-          text-decoration: none;
-          color: $orange-dark;
-        }
-        .item {
-          padding: 0 1rem;
-        }
+      .item {
+        padding: 0 1rem;
       }
     }
   }
+}
 
 .activeButton {
   font-weight: bolder;

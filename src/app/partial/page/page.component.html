@@ -1,9 +1,7 @@
 <div class="main">
-  <h1 class="blog-header">
-    Wintertons.us <small>The Whole Famn Damily</small>
-  </h1>
+  <h1 class="blog-header">Wintertons.us <small>The Whole Famn Damily</small></h1>
   @if (!postsEmpty) {
-    <div  [ngClass]="{ loader: loading }">
+    <div [ngClass]="{ loader: loading }">
       @for (post of posts; track post) {
         <div>
           <app-post [post]="post" [loading]="loading"></app-post>
