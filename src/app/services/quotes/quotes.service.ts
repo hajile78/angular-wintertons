@@ -1,24 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ApiQuoteResults, Quote } from '../../types/ApiQuoteReults';
-import { map, shareReplay, takeWhile } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { ApiQuoteResults, Quote } from "../../types/ApiQuoteReults";
+import { map, shareReplay, takeWhile } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class QuotesService {
-  private server = 'https://api.wintertons.us/'
+  private server = "https://api.wintertons.us/";
   constructor(private http: HttpClient) {}
   alive: boolean = true;
   quotes$ = this.getQuotes();
   quotes: Quote[] | undefined;
 
   getQuotes() {
-    const endpoint: string = 'quotes';
+    const endpoint: string = "quotes";
     return this.http.get<ApiQuoteResults>(`${this.server}${endpoint}`).pipe(
       map((results) => results.quotes),
       shareReplay(1),
-      takeWhile(() => this.alive)
+      takeWhile(() => this.alive),
     );
   }
 
