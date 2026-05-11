@@ -43,11 +43,5 @@
     "minimatch": "10.2.3",
     "picomatch": "4.0.4",
     "undici": "7.24.0"
-  },
-  "overrides": {
-    "on-headers": "~1.1.0",
-    "postcss": "^8.4.49",
-    "tmp": "0.2.4",
-    "vite": "8.0.11"
   }
 }
