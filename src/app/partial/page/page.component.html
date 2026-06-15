@@ -1,23 +1,24 @@
 <div class="main">
   <h1 class="blog-header">Wintertons.us <small>The Whole Famn Damily</small></h1>
-  @if (!postsEmpty) {
-    <div [ngClass]="{ loader: loading }">
-      @for (post of posts; track post) {
-        <div>
-          <app-post [post]="post" [loading]="loading"></app-post>
-        </div>
-      }
-    </div>
-  }
-  @if (postsEmpty) {
-    <div>
-      <div class="main">
-        <div class="postData">
-          <article class="postArticle">
-            <h3>No posts found</h3>
-          </article>
+  @if (postsState$ | async; as state) {
+    @if (state.empty) {
+      <div>
+        <div class="main">
+          <div class="postData">
+            <article class="postArticle">
+              <h3>No posts found</h3>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
+    } @else {
+      @for (post of state.posts; track post.id) {
+        <div>
+          <app-post [post]="post"></app-post>
+        </div>
+      }
+    }
+  } @else {
+    <div class="loader" aria-label="Loading posts"></div>
   }
 </div>
