@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { Post } from "../../types/Post";
 
 @Component({
@@ -7,15 +7,7 @@ import { Post } from "../../types/Post";
   styleUrls: ["./post.component.scss"],
   standalone: false,
 })
-export class PostComponent implements OnInit {
+export class PostComponent {
   postId: any;
-  @Input() loading: boolean = true;
   @Input() post!: Post;
-
-  ngOnInit(): void {
-    if (this.post.id) {
-      this.loading = false;
-      return;
-    }
-  }
 }

@@ -1,16 +1,25 @@
-@if (quote) {
+@if (quoteState$ | async; as state) {
+  @if (state.loading) {
+    <div class="quote">
+      <h3>loading...</h3>
+      <blockquote>
+        <footer>Wait for it....</footer>
+      </blockquote>
+    </div>
+  } @else if (state.empty || !state.quote) {
+    <div class="quote">
+      <h3>No quotes found</h3>
+      <blockquote>
+        <footer>Try again later</footer>
+      </blockquote>
+    </div>
+  } @else {
   <div class="quote">
     <h3>Random Quotes</h3>
     <blockquote>
-      {{ quote.quote }}
-      <footer>{{ quote.author }}</footer>
+      {{ state.quote.quote }}
+      <footer>{{ state.quote.author }}</footer>
     </blockquote>
   </div>
-} @else {
-  <div class="quote">
-    <h3>loading...</h3>
-    <blockquote>
-      <footer>Wait for it....</footer>
-    </blockquote>
-  </div>
+  }
 }

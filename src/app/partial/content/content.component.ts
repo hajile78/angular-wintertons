@@ -26,7 +26,7 @@ export class ContentComponent implements OnInit {
     console.log("content class called");
     this.router.events.pipe(takeWhile(() => this.alive)).subscribe((event) => {
       if (event instanceof NavigationStart) {
-        this.random = this.service.getRandom();
+        this.random += 1;
       }
     });
   }
