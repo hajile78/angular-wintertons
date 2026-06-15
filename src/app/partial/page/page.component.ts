@@ -1,10 +1,15 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { takeWhile } from "rxjs";
+import { catchError, map, Observable, of, switchMap } from "rxjs";
 import { PostsService } from "../../services/posts/posts.service";
 import { ApiPageResults } from "../../types/ApiPageResults";
 import { ApiPostResults } from "../../types/ApiPostResults";
 import { Post } from "../../types/Post";
+
+type PageState = {
+  posts: Post[];
+  empty: boolean;
+};
 
 @Component({
   selector: "app-page",
@@ -14,11 +19,8 @@ import { Post } from "../../types/Post";
 })
 export class PageComponent implements OnInit {
   @Output() setRandom = new EventEmitter<number>();
-  posts: Post[] = [];
-  postsEmpty: boolean = false;
+  postsState$!: Observable<PageState>;
   postId: string | null = null;
-  loading: boolean = true;
-  alive: boolean = true;
   postPage: string | null = null;
   constructor(
     private route: ActivatedRoute,
@@ -27,30 +29,46 @@ export class PageComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("Page component called");
-    this.route.paramMap.subscribe((param) => {
-      this.postPage = param.get("page");
-      this.postId = param.get("id");
-      console.log(`page: ${this.postPage} id: ${this.postId}`);
-      if (this.postId === null && this.postPage !== null) {
-        this.postService
-          .getPosts(this.postPage)
-          .pipe(takeWhile(() => this.alive))
-          .subscribe((res: ApiPageResults) => {
-            this.posts = res.posts;
-            this.postsEmpty = res.posts.length === 0;
-            this.loading = false;
-          });
-      } else {
-        this.postService
-          .getPost(this.postId || "0")
-          .pipe(takeWhile(() => this.alive))
-          .subscribe((res: ApiPostResults) => {
-            res.post[0].id = this.postId ? this.postId : "0";
-            this.posts = res.post;
-            this.postsEmpty = res.post.length === 0;
-            this.loading = false;
-          });
-      }
-    });
+    this.postsState$ = this.route.paramMap.pipe(
+      switchMap((param) => {
+        this.postPage = param.get("page");
+        this.postId = param.get("id");
+        console.log(`page: ${this.postPage} id: ${this.postId}`);
+
+        if (this.postId === null && this.postPage !== null) {
+          return this.postService.getPosts(this.postPage).pipe(
+            map((res: ApiPageResults) => {
+              const posts = res.posts ?? [];
+              return {
+                posts,
+                empty: posts.length === 0,
+              };
+            }),
+            catchError((error) => {
+              console.error("Failed to load posts", error);
+              return of({ posts: [], empty: true });
+            }),
+          );
+        }
+
+        return this.postService.getPost(this.postId || "0").pipe(
+          map((res: ApiPostResults) => {
+            const posts = res.post ?? [];
+            if (posts[0]) {
+              posts[0].id = this.postId ? this.postId : "0";
+            }
+
+            return {
+              posts,
+              empty: posts.length === 0,
+            };
+          }),
+          catchError((error) => {
+            console.error("Failed to load post", error);
+            return of({ posts: [], empty: true });
+          }),
+        );
+      }),
+    );
   }
 }

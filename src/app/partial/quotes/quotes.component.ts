@@ -1,8 +1,13 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { takeWhile } from "rxjs";
+import { Component, Input, OnChanges, SimpleChanges } from "@angular/core";
+import { BehaviorSubject, combineLatest, map, Observable, startWith } from "rxjs";
 import { QuotesService } from "../../services/quotes/quotes.service";
 import { Quote } from "../../types/ApiQuoteReults";
+
+type QuoteState = {
+  quote: Quote | null;
+  loading: boolean;
+  empty: boolean;
+};
 
 @Component({
   selector: "app-quotes",
@@ -10,37 +15,40 @@ import { Quote } from "../../types/ApiQuoteReults";
   styleUrls: ["./quotes.component.scss"],
   standalone: false,
 })
-export class QuotesComponent implements OnInit {
-  @Input() random: number | undefined;
-  quotes!: Quote[];
-  quote!: Quote;
-  alive: boolean = true;
+export class QuotesComponent implements OnChanges {
+  @Input() random = 0;
+  quoteState$!: Observable<QuoteState>;
+  private randomTrigger$ = new BehaviorSubject<number>(0);
 
-  constructor(
-    private service: QuotesService,
-    private router: Router,
-  ) {
-    console.log("constructor" + JSON.stringify(this.quotes));
+  constructor(private service: QuotesService) {
+    this.quoteState$ = combineLatest([this.service.quotes$, this.randomTrigger$]).pipe(
+      map(([quotes]) => {
+        if (!quotes.length) {
+          return {
+            quote: null,
+            loading: false,
+            empty: true,
+          };
+        }
+
+        const index = Math.floor(Math.random() * quotes.length);
+        return {
+          quote: quotes[index] ?? null,
+          loading: false,
+          empty: false,
+        };
+      }),
+      startWith({
+        quote: null,
+        loading: true,
+        empty: false,
+      }),
+    );
   }
 
-  getRandom() {
-    let length: number = this.quotes.length;
-    return Math.floor(Math.random() * length);
-  }
-
-  ngOnInit(): void {
-    console.log("onInit quote component");
-    this.service.quotes$.pipe(takeWhile(() => this.alive)).subscribe((qutoes: Quote[]) => {
-      this.quotes = qutoes;
-      this.random = this.getRandom();
-      this.quote = qutoes[this.random];
-    });
-  }
-
-  ngOnChanges(): void {
-    console.log("onChange quote component");
-    if (this.quotes && this.random) {
-      this.quote = this.quotes[this.random];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes["random"]) {
+      this.randomTrigger$.next(this.random);
     }
   }
 }
