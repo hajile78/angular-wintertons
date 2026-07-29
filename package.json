@@ -42,6 +42,6 @@
   "resolutions": {
     "esbuild": "0.28.1",
     "@babel/core": "7.29.7",
-    "@hono/node-server": "2.0.5"
+    "@hono/node-server": "2.0.10"
   }
 }
