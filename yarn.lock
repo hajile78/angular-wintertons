@@ -616,10 +616,10 @@
   resolved "https://registry.yarnpkg.com/@harperfast/extended-iterable/-/extended-iterable-1.0.3.tgz#471489c5058331017e821bf6c33de70fc2c073ee"
   integrity sha512-sSAYhQca3rDWtQUHSAPeO7axFIUJOI6hn1gjRC5APVE1a90tuyT8f5WIgRsFhhWA7htNkju2veB9eWL6YHi/Lw==
 
-"@hono/node-server@2.0.5", "@hono/node-server@^1.19.9":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@hono/node-server/-/node-server-2.0.5.tgz#54c58f722032ccb7394d8860277cfd0415cd6ce5"
-  integrity sha512-yQFvDmyDo3y6rEOJZDUYPJ49DIKTPpIk4kGvm40xx4Ejne0Pu9a1+exxPN+C1UppWK/WGZX9F++/Xs231tE86g==
+"@hono/node-server@2.0.10", "@hono/node-server@^1.19.9":
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/@hono/node-server/-/node-server-2.0.10.tgz#cead0d97639ab138c2f5a38128931763e992afd5"
+  integrity sha512-ZcnNVhKTmyDJeg0UlnZjvM73JBsTAuhrH/J4fjwGOw59PwOW51r4J+p6CsKZWXdKSme4MFqU62CZMOsdDrU4CA==
 
 "@inquirer/ansi@^2.0.7":
   version "2.0.7"
