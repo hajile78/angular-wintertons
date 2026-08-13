@@ -1,0 +1,38 @@
+<div *ngIf="visible" class="modal-overlay" (click)="onOverlayClick()">
+  <div
+    class="modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    (click)="stopPropagation($event)"
+  >
+    <button class="modal-close" aria-label="Close" (click)="close()">×</button>
+    <h2>{{ title }}</h2>
+    <div class="modal-body">
+      <ng-container
+        *ngIf="contentTpl; else fallback"
+        [ngTemplateOutlet]="contentTpl"
+      ></ng-container>
+      <ng-template #fallback>
+        <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+          <p class="mb-4 text-gray-700 leading-relaxed">
+            Lord, as the years go by, grant me restraint of tongue and a patient
+            heart; help me speak when my words heal and be silent when they
+            harm.
+          </p>
+          <p class="mb-4 text-gray-700 leading-relaxed">
+            Let me be helpful without overbearing, thoughtful without gloom, and
+            humble in the sharing of whatever hard-won wisdom I have.
+          </p>
+          <p class="mb-4 text-gray-700 leading-relaxed">
+            Keep me gentle in temper, quick to encourage, slow to complain, and
+            grateful for small mercies each day.
+          </p>
+          <p class="text-center font-semibold text-gray-800 mt-6">Amen</p>
+          <p class="text-center text-sm text-gray-500 mt-4">
+            Courtesy of the Winterton community
+          </p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
